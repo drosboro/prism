@@ -33,9 +33,11 @@ class PrismsController < ApplicationController
       @prism = Prism.find(params[:id])
       for facet in @prism.facets
           indices = params[("facet#{facet.order}_indices").to_sym]
-          for index in JSON.load(indices)
-              word_marking = WordMarking.new(user:current_user, index:index, facet:facet, prism:@prism)
-              word_marking.save()
+          if JSON.load(indices)
+            for index in JSON.load(indices)
+                word_marking = WordMarking.new(user:current_user, index:index, facet:facet, prism:@prism)
+                word_marking.save()
+            end
           end
       end
       redirect_to(visualize_path(@prism))    
@@ -49,20 +51,14 @@ class PrismsController < ApplicationController
     
     users = []
     @frequencies = {}
-    @totals = {}
     
     for facet in @prism.facets
       @frequencies[facet.order] = [0.0] * @prism.num_words
-      @totals[facet.order] = 0
     end
     
     for word_marking in @prism.word_markings
-      @totals[word_marking.facet.order] += 1
-    end
-    
-    for word_marking in @prism.word_markings
-        # To scale accordingly, # of times word was marked divided by total # of markings for that facet
-        @frequencies[word_marking.facet.order][word_marking.index] += 1.0 / @totals[word_marking.facet.order]
+        # Make accessible the count of all the markings per word per facet
+        @frequencies[word_marking.facet.order][word_marking.index] += 1.0
     end   
   end
 

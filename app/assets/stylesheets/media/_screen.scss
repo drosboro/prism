@@ -1,15 +1,10 @@
-
-$white: #fff;
-
-::selection { background: $white; text-shadow: none;}
-
-::-moz-selection { background: $white; text-shadow: none;}
-
-
+::selection,
+::-moz-selection { background: white; text-shadow: none;}
 
 html {	
 	background: white;
 }
+
 
 body {
 	max-width: 800px; 
@@ -20,6 +15,7 @@ body {
 	font-family: $headerfont;
 }
 
+
 input[type=submit] {
 	border: none;
 }
@@ -27,14 +23,31 @@ input[type=submit] {
 .button {
 	display: block;
 	width: 150px;
-	background-color: $green;
-	color: white;
+	background-color: $yellow;
+	color: white !important;
 	text-transform: uppercase;
 	text-align: center;
 	padding: 10px;
 	@include border-radius(15px);
 	margin-bottom: 20px;
 }
+
+ #corner-banner {
+        position: absolute;
+        left: -140px;
+        top: 100px;
+        display: block;
+        width: 600px;
+        background: $yellow;
+        text-align:center;
+        font-size:20px;
+        line-height:20px;
+        padding:3px 200px;
+        @include rotate(315deg);
+        @include box-sizing(border-box);
+}
+       
+
 
 header {
 	
@@ -46,15 +59,50 @@ header {
 	font-size: 16px;
 }
 
-#buttons img{
-    width: 200px;
-    height: 200px;
-    margin: 25px;
-    @include border-radius(20px);
-}
+#buttons {
+  @include clearfix;
+  text-align:center;
+  margin: 4em 0;
 
-#buttons {text-align: center;
-	margin-top:25px;}
+  span {
+    display:inline-block;
+  }
+
+  a {
+    color: white;
+    background-color: $blue;
+    width: 220px;
+    line-height: 220px;
+    text-align:center;
+    font-size: 1.25em;
+    text-transform:uppercase;
+    @include border-radius(110px);
+    float:left;
+    margin: 0 20px;
+
+    &.demo {
+      background-color: $red;
+      &:hover,
+      &:active {
+        background-color: darken($red, 10%);
+      }
+    }
+    &.create {
+      background-color: $green;
+      &:hover,
+      &:active {
+        background-color: darken($green, 10%);
+      }
+    }
+    &.play {
+      background-color: $blue;
+      &:hover,
+      &:active {
+        background-color: darken($blue, 10%);
+      }
+    }
+  }
+}
 
 nav {
 
@@ -78,18 +126,33 @@ nav {
 		padding-bottom: 0px;
 	}
 
-	a { 
-		text-decoration: none;
-		color: black;
-	}
-
-	a:hover {
-		color: $blue;
-
-	}
+	a {
+    &:link,
+    &:visited {
+      color:lighten(black, 50%);
+    }
+    &:hover,
+    &:focus,
+    &:active {
+      color: black;
+    }
+  }
 }
  
-a {text-decoration: none; color: $blue;}
+a {
+  text-decoration: none;
+  color: $blue;
+
+  &:link,
+  &:visited {
+    color: $blue;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: darken($blue, 20%);
+  }
+}
 
 nav, h1, h2,
 .motto {text-transform: uppercase;
@@ -129,7 +192,6 @@ label,
 input[type=email], 
 input[type=password] 
 {display: block;
-border-radius:20px;
 height: 30px;
 width: 300px;
 }
@@ -166,9 +228,8 @@ width: 300px;
 
 #user_meta {
 	float: right;
-	font-size: 12px;
-	color: $gray;
-
+	font-size: 13px;
+	color: lighten(black, 50%);
 }
 
 
@@ -177,14 +238,24 @@ width: 300px;
 
 #footernav {
 	text-align: center;	
-	margin-top: 100px;
+	margin-top: 200px;
 	clear: both;
 
 	a {
 		text-transform: uppercase;
-		color: $gray;
 		padding-left: 20px;
 		padding-right: 20px;
+
+    &:link,
+    &:visited {
+      color:lighten(black, 50%);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: black;
+    }
 
     &#slab-link {
       width: 150px;
@@ -192,6 +263,13 @@ width: 300px;
       text-align:center;
       margin:20px auto;
       opacity: 0.5;
+
+      &:hover,
+      &:focus,
+      &:active {
+        opacity: 0.9;
+      }
+
       img {
         max-width: 100%;
         width:auto;
@@ -199,7 +277,6 @@ width: 300px;
       }
     }
 	}
-
 }
 
 //flash notice---------------------------------
@@ -263,14 +340,14 @@ td {
 	float: right;	
 }
 
-#license {
-	padding-top: 20px;
+#tools {
+	padding-bottom: 50px;
 }
 
 #highlighters {
   list-style:none;
   padding-left:0;
-  padding-top: 110px;
+  padding-top: 76px;
 
   li {
     @include clearfix;
@@ -289,6 +366,9 @@ li.facet{
 	padding: 5px;
 }
 
+li.vis_facet{
+	padding: 5px;
+}
 }
 
 
@@ -322,14 +402,6 @@ textarea[name="prism[content]"] {
 	display: inline-block;
 	float: right;
 	padding: 0px;
-
-	textarea{ 
-		border-radius: 20px;
-		}
-	}
-
-	input {
-		border-radius: 20px;
 	}
 
 div.clearfix{
@@ -346,7 +418,6 @@ div.clearfix{
 
 	.leftcolumn {
 		background-color: $blue;
-		textarea{ border-radius: 20px;}
 
 		}
 

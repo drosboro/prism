@@ -18,7 +18,6 @@
   </div>
   <div id="sidebar">
     <div id="visualizations">
-      <p id="visualization-help"><%= t "visualize.instructions" %> </p>
       <ul id="highlighters">
         <% for facet in @prism.facets %>
           <li class="vis_facet">
@@ -27,12 +26,13 @@
             <input type="hidden" value="<%=@frequencies[facet.order]%>" class="freq"/>
             <span class="facet <%=facet.order%> <%=facet.color%>"></span><%=facet.description%></li>
         <% end %>
- 
+  <p id="visualization-help"><%= t "visualize.instructions" %> </p>
+     
       </ul>
       <p><%= render 'cc_license' %></p>
       <p id="viz-count">
-      <span><% if @usercounter != nil %>
-          <%=@usercounter%></span> <% if @usercounter == 1%>user <% else%>users <%end%>contributed to this visualization.
+      <span><% if @prism.word_markings.map(&:user_id).uniq != nil %>
+          <%=@prism.word_markings.map(&:user_id).uniq.size %></span> <% if @prism.word_markings.map(&:user_id).uniq.size == 1%>user <% else%>users <%end%>contributed to this visualization.
     <% end %>
     </p>
     
@@ -40,3 +40,4 @@
     </div>
   </div>
 </div>
+
