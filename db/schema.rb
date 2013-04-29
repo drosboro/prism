@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420063736) do
+ActiveRecord::Schema.define(:version => 20130429183531) do
 
   create_table "facets", :force => true do |t|
     t.string   "color"
@@ -77,6 +77,6 @@ ActiveRecord::Schema.define(:version => 20130420063736) do
   end
 
   add_index "word_markings", ["index"], :name => "index_word_markings_on_index"
-  add_index "word_markings", ["index"], :name => "index_word_markings_on_prism_id_and_index"
+  add_index "word_markings", ["prism_id"], :name => "index_word_markings_on_prism_id"
 
 end
