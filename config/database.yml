@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   database: prism_development
-  username: wsg4w
+  username: 
   password:
 
 # Warning: The database defined as "test" will be erased and
