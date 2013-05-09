@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-#ruby "1.9.3"
+ruby "2.0.0" # tells heroku which version of Ruby to use
 
 gem 'rails', '~>3.2.13'
 # gem 'rails', github: 'rails/rails', branch: '3-2-stable'

@@ -1,4 +1,4 @@
-rvm use 1.9.3@prism --create
+rvm use 2.0.0@prism --create
 
 git pull
 
